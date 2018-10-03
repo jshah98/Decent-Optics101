@@ -1,0 +1,18 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+import java.util.*;
+public class Mirror extends GameObject
+{
+
+  public Mirror (Image im, Location loc, Grid grid)
+  {
+    super (im, loc, grid);
+  }
+  
+  public void reflect ()
+  {
+  }
+}

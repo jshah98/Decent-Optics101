@@ -1,0 +1,54 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+
+/*
+ * This is the Instructions screen. 
+ */ 
+public class Instructions extends JPanel 
+{
+  Image background;
+  /*
+   * Creates the Instructions object.
+   * 
+   * @param backIcon Used to store button icon.
+   * @param backButton Used to go back to main menu.
+   */ 
+  public Instructions()
+  {
+    try
+    {
+      background= ImageIO.read (getClass().getResource ("InstructionsBack.jpg"));
+    }
+    catch (IOException e) { return; }
+    instructions ();
+  }
+  
+  
+  public void instructions ()
+  {
+    setLayout (null);
+    ImageIcon backIcon= new ImageIcon (getClass().getClassLoader().getResource("back.jpg"));
+    JButton backButton = new JButton (backIcon);
+    backButton.setBorder (BorderFactory.createLineBorder(Color.BLACK, 1));
+    backButton.addActionListener (new ActionListener()
+      {
+        public void actionPerformed (ActionEvent e)
+        {
+          removeAll ();
+          MainMenu.c.add (new MainMenu ());
+          revalidate ();
+        }
+    });
+    add (backButton);
+    backButton.setBounds (10, 600, 170, 60);
+  }
+  protected void paintComponent(Graphics g) 
+  {
+    super.paintComponent(g); 
+    g.drawImage(background,0,0,null);
+  }
+  
+}

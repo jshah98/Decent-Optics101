@@ -1,0 +1,102 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+/**
+ * This is the main panel for the program.
+ * @version 1.0.
+ * @author Jinansh, Christian.
+ * @since 23/05/14.
+ * 
+ * @param title panel which has the title component.
+ * @param panel panel where user interaction occurs.
+ */
+public class Optics101 extends JPanel
+{
+  JPanel panel = new JPanel ();
+  JPanel title = new JPanel ();
+  
+  /**
+   * The constructor adds the two panels (title and user interaction panel) to the main panel.
+   */
+  public Optics101 ()
+  {
+    title.setPreferredSize (new Dimension (1000, 200));
+    title ();
+    add (title);
+    add (panel);
+    mainMenu ();
+  }
+  
+  /**
+   * This method removes everything from the screen and adds the title to the title panel.
+   * @param f stores the font of the title.
+   */
+  public void title ()
+  {
+    this.removeAll ();
+    Font f = new Font ("Serif", Font.BOLD, 36);
+    JLabel titleLabel = new JLabel ("Optics 101");
+    titleLabel.setFont (f);
+    add (titleLabel);
+    this.revalidate ();
+  }
+  
+  /**
+   * The method creates the main menu options and adds them to the user interactions panel.
+   * @param LAYOUT sets layout of user interactions panel to be GroupLayout.
+   * @param CONTINUE_BUTTON stores a JButton titled "Continue".
+   * @param NEW_GAME_BUTTON stores a JButton titled "New Game".
+   * @param INSTRUCTIONS_BUTTON stores a JButton titled "Instructions".
+   * @param SETTINGS_BUTTON stores a JButton titled "Settings".
+   * @param HIGH_SCORES_BUTTON stores a JButton titled "High Scores".
+   * @param QUIZ_BUTTON stores a JButton titled "Quiz".
+   * @param EXIT_BUTTON stores a JButton titled "Exit".
+   */
+  public void mainMenu ()
+  {
+    final GroupLayout LAYOUT = new GroupLayout (panel);
+    final JButton CONTINUE_BUTTON= new JButton ("Continue");
+    final JButton NEW_GAME_BUTTON = new JButton ("New Game");
+    final JButton INSTRUCTIONS_BUTTON = new JButton ("Instructions");
+    final JButton SETTINGS_BUTTON= new JButton ("Settings");
+    final JButton HIGH_SCORES_BUTTON = new JButton ("High Scores");
+    final JButton QUIZ_BUTTON = new JButton ("Quiz");
+    final JButton EXIT_BUTTON = new JButton ("Exit");
+    CONTINUE_BUTTON.setEnabled (false);
+    panel.setLayout (LAYOUT);
+    LAYOUT.linkSize (CONTINUE_BUTTON,NEW_GAME_BUTTON ,INSTRUCTIONS_BUTTON,SETTINGS_BUTTON, HIGH_SCORES_BUTTON,QUIZ_BUTTON,EXIT_BUTTON);
+    LAYOUT.setAutoCreateGaps (true);
+      LAYOUT.setHorizontalGroup(
+                              LAYOUT.createSequentialGroup()
+                                .addGroup (LAYOUT.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                             .addComponent (CONTINUE_BUTTON)
+                                             .addComponent (NEW_GAME_BUTTON)
+                                             .addComponent (INSTRUCTIONS_BUTTON)
+                                             .addComponent (SETTINGS_BUTTON)
+                                             .addComponent (HIGH_SCORES_BUTTON)
+                                             .addComponent (QUIZ_BUTTON)
+                                             .addComponent (EXIT_BUTTON))
+                               );
+    LAYOUT.setVerticalGroup(
+                            LAYOUT.createSequentialGroup()
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(CONTINUE_BUTTON))
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(NEW_GAME_BUTTON))
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(INSTRUCTIONS_BUTTON))
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(SETTINGS_BUTTON))
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(HIGH_SCORES_BUTTON))
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(QUIZ_BUTTON))
+                              .addGroup(LAYOUT.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                          .addComponent(EXIT_BUTTON))
+                           );
+    panel.revalidate ();
+  }
+  
+
+  
+}

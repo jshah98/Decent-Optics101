@@ -1,0 +1,26 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Intro extends JPanel
+{
+
+  public Intro()
+  {
+    this.setOpaque(true);
+    this.setBackground(Color.BLACK); 
+    JLabel imageLabel= new JLabel();
+    ImageIcon pic= new ImageIcon("FINAL3.gif");
+    imageLabel.setIcon(pic);
+    add(imageLabel);
+    setLayout(new FlowLayout(0));
+    setSize(585,585);
+    try
+    {
+      Thread.sleep(1300);
+    }
+    catch(Exception e){}
+    pic= new ImageIcon("backgroundFinal.jpg");
+    imageLabel.setIcon(pic);  
+  }
+}

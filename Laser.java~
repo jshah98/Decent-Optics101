@@ -1,0 +1,313 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
+import java.util.*;
+public class Laser extends GameObject 
+{
+  private int direction;
+  private int side;
+  
+  public Laser (int d, int side, Location loc){
+    super (null, loc);
+    direction =     formatDirection (d);
+    this.side = formatSide (side);
+  }
+  
+  private int formatDirection (int dir)
+  {
+    while (dir > 360)
+    {
+      dir -= 90;
+    }
+    dir = dir- ((dir-45)% 90);
+    if (dir < 0)
+      dir += 360;
+    return dir;
+  }
+  
+  private int formatSide (int side)
+  {
+    side = side %4;
+    if (side < 0)
+      side += 4;
+    return side;
+  }
+  public int getDirection (){
+    return direction;
+  }
+  
+  public void paint (Graphics g)
+  {
+    int x =  964/2- (getGrid().getGridSize()*50/2) + getObjectLocation().getCol  ()*50;
+    int y = 150 + 50*getObjectLocation().getRow (); 
+    g.setColor (Color.RED);
+    if (side == 1)
+    {
+      x+= 25;
+    }
+    else if (side == 2){
+      x+= 25; 
+      y+= 50;
+    }
+    else if (side ==3){
+      y+= 25;
+    }
+    else{
+      if (side == 4){
+        y+= 25;
+        x+= 50;
+      }}
+    int xInc = 0; 
+    int yInc = 0;
+    if (direction == 45)
+    {
+      xInc = 1;
+      yInc = -1;
+    }
+    else if (direction == 135)
+    {
+      xInc = 1;
+      yInc = 1;
+    }
+    else if (direction == 225)
+    {
+      xInc = -1;
+      yInc = 1;
+    }
+    else {
+      if (direction == 315)
+      {
+        xInc = -1; 
+        yInc = -1;
+      }
+    }
+    //int q = getGrid().getGridSize()*50; 
+    
+    for (int i = 0; i <distance (g) /*q*/; i++)
+    {
+      g.drawLine ( x, y, x+xInc, y+yInc);
+      x+= xInc;
+      y+= yInc;
+    }
+  }
+  
+  
+  public Location change1 (Location loc, int d)
+  {
+    
+  }
+  
+  
+  public int distance (Graphics g)
+  {
+    Location loc = this.getObjectLocation ();
+    int newSide = 1;
+    Location newLoc= null;
+    int change = 0;
+    int distance = 0;
+    loop:{
+      for (int d = 0; d < getGrid().getGridSize (); d++){
+        for (int i = 0; i < Game.gameObjs.size (); i++){
+          if (getDirection () == 45)
+            x
+//          if (getDirection() == 45){
+//            if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()-1-d, loc.getCol()+1+d)))
+//            {
+//              if (side == 1)
+//              {
+//                change = 270;
+//                distance += 25;
+//                newSide = 3;
+//              }
+//              else if (side == 2){
+//                change = 90;
+//                distance += 50; 
+//                newSide = 2;
+//              }
+//              else if (side == 3){
+//                change = 270;
+//                distance += 50;
+//                newSide = 3;
+//              }
+//              else if (side == 4){
+//                change = 90;
+//                distance += 25;
+//                newSide = 2;}
+//              newLoc = new Location (loc.getRow ()-1-d, loc.getCol()+1+d);
+//              break loop;
+//            }
+//            else {
+//              if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()-1-d, loc.getCol()+2+d)))
+//              {
+//                if (side == 2){
+//                  change = 270;
+//                  distance += 75; 
+//                  newSide = 3;
+//                }
+//                else {
+//                  if (side == 4){
+//                    change = 270;
+//                    distance += 50;
+//                    newSide = 3;}
+//                }
+//                newLoc = new Location (loc.getRow ()-1-d, loc.getCol()+2+d);
+//                break loop;
+//              }
+//            }}
+//          
+//          
+//          else if (getDirection() == 135)
+//          {
+//            if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()+1+d, loc.getCol()+1+d)))
+//            {
+//              if (side == 1)
+//              {
+//                change = -90;
+//                distance += 50;
+//                newSide = 1;
+//              }
+//              else if (side == 2){
+//                change = 90;
+//                distance += 25;
+//                newSide = 3;
+//              }
+//              else if (side == 3){
+//                change = 90;
+//                distance += 50;
+//                newSide = 3;
+//              }
+//              else if (side == 4){
+//                change = -90;
+//                distance += 25; 
+//                newSide = 1;}
+//              newLoc = new Location (loc.getRow () +1+d, loc.getCol ()+1+d);
+//              break loop;
+//            }
+//            else {
+//              if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()+1+d, loc.getCol()+2+d)))
+//              {
+//                if (side == 1){
+//                  change = 90;
+//                  distance += 75; 
+//                  newSide = 3;
+//                }
+//                else {
+//                  if (side == 4){
+//                    change = 90;
+//                    distance += 50; 
+//                    newSide = 3;}
+//                }
+//                newLoc = new Location (loc.getRow () +1+d, loc.getCol ()+2+d);
+//                break loop;
+//              }
+//            }}
+//          
+//          
+//          else if (getDirection () == 225)
+//          {
+//            if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()+1+d, loc.getCol()-1-d)))
+//            {
+//              if (side == 1)
+//              {
+//                change = 90;
+//                distance += 50;
+//                newSide = 1;
+//              }
+//              else if (side == 2){
+//                change = -90;
+//                distance += 25; 
+//                newSide = 4;
+//              }
+//              else if (side == 3){
+//                change = 90;
+//                distance += 25;
+//                newSide = 1;
+//              }
+//              else if (side == 4){
+//                change = -90;
+//                distance += 50;
+//                newSide = 4;}
+//              newLoc = new Location (loc.getRow ()+1+d, loc.getCol()-1-d);
+//              break loop;
+//            }
+//            else {
+//              if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()+1+d, loc.getCol()-2-d)))
+//              {
+//                if (side == 1){
+//                  change = -90;
+//                  distance += 75; 
+//                  newSide = 4;
+//                }
+//                else {
+//                  if (side == 3){
+//                    change = -90;
+//                    distance += 50;
+//                    newSide = 4;}
+//                }
+//                newLoc = new Location (loc.getRow ()+1+d, loc.getCol()-2-d);
+//                break loop;
+//              }
+//            }}
+//          
+//          
+//          else if (getDirection () == 315)
+//          {
+//            if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()-1-d, loc.getCol()-1-d)))
+//            {
+//              if (side == 1)
+//              {
+//                change = -270;
+//                distance += 25;
+//                newSide =4;
+//              }
+//              else if (side == 2){
+//                change = -90;
+//                distance += 50; 
+//                newSide =2;
+//              }
+//              else if (side == 3){
+//                change = -90;
+//                distance += 25;
+//                newSide =2;
+//              }
+//              else if (side == 4){
+//                change = -270;
+//                distance += 50; 
+//                newSide =4;}
+//              newLoc = new Location (loc.getRow ()-1-d, loc.getCol()-1-d);
+//              break loop;
+//            }
+//            else {
+//              if (Game.gameObjs.get(i).getObjectLocation().equals (new Location (loc.getRow ()-1-d, loc.getCol()-2-d)))
+//              {
+//                if (side == 2){
+//                  change = -270;
+//                  distance += 75; 
+//                  newSide =4;
+//                }
+//                else {
+//                  if (side == 3){
+//                    change = -270;
+//                    distance += 50; 
+//                    newSide =4;}
+//                }
+//                newLoc = new Location (loc.getRow ()-1-d, loc.getCol()-2-d);
+//                break loop;
+//              }
+//            }}
+        }
+        distance += 50;
+      }
+      if (newLoc != null)
+        (new Laser (getDirection () + change, newSide, newLoc)).paint (g);
+    }
+      return distance;}
+  
+  public void setDirection (int dir)
+  {
+    direction = formatDirection (dir);
+  }
+  
+}

@@ -1,0 +1,49 @@
+
+import java.util.*;
+public class Question
+{
+  //private final int NUM_OPTIONS = 4;
+  //private String [] options = new String [NUM_OPTIONS];
+  private String option1;
+  private String option2;
+  private String option3;
+  private String answer;
+  private String question;
+  
+  
+  public Question (String q, String answer, String op1, String op2, String op3)
+  {
+    this.answer = answer;
+    int ans = (int) (Math.random ()*4);
+    ArrayList <String> ops = new ArrayList <String> (4);
+    ops.set (ans, answer);
+  }
+  
+  
+  
+  public String question ()
+  {
+    return question;
+  }
+  public String getOption1 ()
+  {
+    return option1;
+  }
+  
+  public String getOption2 ()
+  {
+    return option2;
+  }
+  
+  public String getOption3 ()
+  {
+    return option3;
+  }
+  
+  public String getAnswer ()
+  {
+    return answer;
+  }
+  
+  
+}
